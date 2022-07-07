@@ -80,3 +80,6 @@ try {
 }
 
 ```
+
+## if properties are nested use dot in navigation
+```globalMethodPublisherBus.on('navigator.canShare', callback)```
