@@ -5,6 +5,7 @@
 		const CONSUMERS = new Map()
 		const INSTANCES = new Map()
 		const PROXIES = new Map()
+		const TARGETS = new Map()
 
 		let ID = 0
 
@@ -20,6 +21,7 @@
 			try{
 				const consumers_by_instance = CONSUMERS.get(instance_name)
 				consumers_by_instance.delete(consumer_id)
+				TARGETS.delete(instance_name.replace(/\w+./g, ''))
 
 				if (consumers_by_instance.size === 0) {
 					PROXIES.delete(instance_name)
@@ -58,6 +60,7 @@
 			const name_array = name.split('.')
 			const instance_parent_name = name_array.slice(0,-1).join('.')
 			const only_instance_name = name_array.slice(-1)[0]
+			TARGETS.set(only_instance_name, name)
 			parent_instance = getInstance(instance_parent_name)
 			parent_instance[only_instance_name] = new_instance
 		}
@@ -81,7 +84,7 @@
 		}
 
 		function apply (target, thisArg, argumentsList) {
-			const target_name = target.name
+			const target_name = TARGETS.get(target.name)
 			const instance_consumers = CONSUMERS.get(target_name)
 
 			let prevent = false
@@ -96,7 +99,7 @@
 		    	prevent = true
 		    }
 		  }
-		  console.dir(instance_consumers)
+		  
 		  instance_consumers.forEach( callback => callback(eventObject) )
 
 		  if (!prevent) {
