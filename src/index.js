@@ -76,10 +76,6 @@
 				CONSUMERS.set(instance_name, new Map().set(ID, callback))
 		}
 
-		// function getInstanceName (instance, name) {
-		// 	return instance.name || name
-		// }
-
 		function buildProxy (instance) {
 		 return new Proxy(instance, { apply })
 		}
