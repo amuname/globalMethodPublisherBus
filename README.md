@@ -1,6 +1,6 @@
 # Global object property 'globalMethodPublisherBus'
 
-simle bus to register and unregister listeners over native methods that dont have on/off or 'listerer' functionality
+simple bus to register and unregister listeners over native methods that dont have on/off or 'listerer' functionality
 
 ## Zero mutations on methods
 
