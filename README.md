@@ -8,32 +8,47 @@ same functioanality, properties and return values
 
 ## Use callback to get notification before and after method invocation
 
-create callback ```const my_func = function(message_object){}```
+create callback 
+```js
+const my_func = function(message_object){}
+```
 
-register callback ```timerBus.addListener(my_func)```
+register callback 
+```js
+timerBus.addListener(my_func)
+```
 
-handle 'message_object' in callback body ```const {
+handle 'message_object' in callback body 
+```js
+const {
 	message,
 	instance,
 	timer_id,
 	type,
 	arguments
-	} = message_object```
+	} = message_object
+```
 
 now you have info to manipulate by yourself
 
 ## bonus in 'before' invocation 'message_object'
 
-you can syncronicly prevent method ```message_object?.prevent && message_object.prevent()```
+you can syncronicly prevent method 
+```js
+message_object?.prevent && message_object.prevent()
+```
 
 naturally may cause errors by return 'undefined' value
 
 ## Simple example
 
-add script to HTML ```<script src="your.path">```
+add script to HTML 
+```HTML
+<script src="your.path">
+```
 
 register listener on fetch and play with it
-```
+```js
 const id_to_revoke0 = globalMethodPublisherBus.addListener('fetch', message_object => {
 	console.dir(message_object)
 })
@@ -82,4 +97,6 @@ try {
 ```
 
 ## if properties are nested use dot in navigation
-```globalMethodPublisherBus.on('navigator.canShare', callback)```
+```js
+globalMethodPublisherBus.on('navigator.canShare', callback)
+```
