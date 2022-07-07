@@ -15,7 +15,7 @@ const my_func = function(message_object){}
 
 register callback 
 ```js
-timerBus.addListener(my_func)
+globalMethodPublisherBus.addListener(name_or_path, my_func)
 ```
 
 handle 'message_object' in callback body 
