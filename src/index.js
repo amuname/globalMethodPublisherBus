@@ -68,7 +68,7 @@
 		function getInstance (name) {
 			let item = globalThis
 			return item[name] ? item[name] : !name.split('.')
-		  	.forEach( e => item = item[e]) && item
+		  	.forEach( e => item = item[e]) && item || globalThis
 		}
 
 		function setConsumer (instance_name, callback) {
